@@ -6,13 +6,15 @@ Control an addressable LED strip with an ESP8266 via a web browser or infrared r
 Hardware
 --------
 
-##### ESP8266 development board
+##### ESP82xx development boards
 
 [![Wemos D1 Mini Pro & Headers](https://ae01.alicdn.com/kf/HTB1P1KVaMsSMeJjSsphq6xuJFXah/WEMOS-D1-mini-Pro-V1-1-0-16M-bytes-external-antenna-connector-ESP8266-WIFI-Internet-of.jpg_200x200.jpg)](https://www.aliexpress.com/item/WEMOS-D1-mini-Pro-16M-bytes-external-antenna-connector-ESP8266-WIFI-Internet-of-Things-development-board/32724692514.html)
 
 [Wemos D1 Mini Pro & Headers](https://www.aliexpress.com/item/WEMOS-D1-mini-Pro-16M-bytes-external-antenna-connector-ESP8266-WIFI-Internet-of-Things-development-board/32724692514.html)
 
-or
+[![Wemos D1 Mini Lite & Headers](https://ae01.alicdn.com/kf/HTB1w6K2aMoSMeJjSspaq6zMOFXaq/WEMOS-D1-mini-Lite-V1-0-0-WIFI-Internet-of-Things-development-board-based-ESP8285-1MB.jpg_200x200.jpg)](https://www.aliexpress.com/store/product/WEMOS-D1-mini-Lite-V1-0-0-WIFI-Internet-of-Things-development-board-based-ESP8285-1MB/1331105_32795857574.html)
+
+[Wemos D1 Mini Lite & Headers](https://www.aliexpress.com/store/product/WEMOS-D1-mini-Lite-V1-0-0-WIFI-Internet-of-Things-development-board-based-ESP8285-1MB/1331105_32795857574.html)
 
 [![Adafruit HUZZAH ESP8266 Breakout](https://cdn-shop.adafruit.com/310x233/2471-10.jpg)](https://www.adafruit.com/products/2471)
 
@@ -22,9 +24,13 @@ or
 
 [![Adafruit NeoPixel Ring](https://www.adafruit.com/images/145x109/1586-00.jpg)](https://www.adafruit.com/product/1586)
 
-[Adafruit NeoPixel Ring]
+[Adafruit NeoPixel Ring](https://www.adafruit.com/product/1586)
 
-Other hardware:
+[![Generic ws2812b LED Strip](https://ae01.alicdn.com/kf/HTB1thpSIXXXXXcBaXXXq6xXFXXXG/DC5V-1m-5m-Black-White-PCB-30-60-144-leds-m-WS2812IC-30-60-144-LED.jpg_200x200.jpg)](https://www.aliexpress.com/item/DC5V-1m-5m-Black-White-PCB-30-60-144-leds-m-WS2812IC-30-60-144-LED/32414654549.html)
+
+[Generic ws2812b LED Strip](https://www.aliexpress.com/item/DC5V-1m-5m-Black-White-PCB-30-60-144-leds-m-WS2812IC-30-60-144-LED/32414654549.html)
+
+##### Other hardware:
 
 * [3.3V to 5V Logic Level Shifter](http://www.digikey.com/product-detail/en/texas-instruments/SN74HCT245N/296-1612-5-ND/277258) (required if LEDs "glitch")
 
@@ -50,9 +56,9 @@ Web App
 
 ![Web App](webapp.png)
 
-Patterns are requested by the app from the ESP8266, so as new patterns are added, they're automatically listed in the app.
+Patterns are requested by the app from the ESP8266, so as new patterns are added, they're automatically listed in the app
 
-The web app is stored in SPIFFS (on-board flash memory).
+The web app is stored in SPIFFS (on-board flash memory, separated from the program storage location).
 
 The web app is a single page app that uses [jQuery](https://jquery.com) and [Bootstrap](http://getbootstrap.com).  It has buttons for On/Off, a slider for brightness, a pattern selector, and a color picker (using [jQuery MiniColors](http://labs.abeautifulsite.net/jquery-minicolors)).  Event handlers for the controls are wired up, so you don't have to click a 'Send' button after making changes.  The brightness slider and the color picker use a delayed event handler, to prevent from flooding the ESP8266 web server with too many requests too quickly.
 
@@ -65,12 +71,11 @@ The app is installed via the Arduino IDE which can be [downloaded here](https://
 The app depends on the following libraries. They must either be downloaded from GitHub and placed in the Arduino 'libraries' folder, or installed as [described here](https://www.arduino.cc/en/Guide/Libraries) by using the Arduino library manager.
 
 * [FastLED](https://github.com/FastLED/FastLED)
-* [IRremoteESP8266](https://github.com/sebastienwarin/IRremoteESP8266)
 * [Arduino WebSockets](https://github.com/Links2004/arduinoWebSockets)
 
-Download the app code from GitHub using the green Clone or Download button from [the GitHub project main page](https://github.com/jasoncoon/esp8266-fastled-webserver) and click Download ZIP. Decompress the ZIP file in your Arduino sketch folder.
+Download the app code from GitHub using the green Clone or Download button from [the GitHub project main page](https://github.com/robpneu/esp8266-fastled-webserver) and click Download ZIP. Decompress the ZIP file in your Arduino sketch folder.
 
-The web app needs to be uploaded to the ESP8266's SPIFFS.  You can do this within the Arduino IDE after installing the [Arduino ESP8266FS tool](https://github.com/esp8266/Arduino/blob/master/doc/filesystem.md#uploading-files-to-file-system).
+The web app needs to be uploaded to the ESP8266's SPIFFS.  You can do this within the Arduino IDE after installing the [Arduino ESP8266FS tool](https://github.com/esp8266/arduino-esp8266fs-plugin).
 
 With ESP8266FS installed upload the web app using `ESP8266 Sketch Data Upload` command in the Arduino Tools menu.
 
@@ -92,10 +97,6 @@ REST Web services
 
 The firmware implements basic [RESTful web services](https://en.wikipedia.org/wiki/Representational_state_transfer) using the ESP8266WebServer library.  Current values are requested with HTTP GETs, and values are set with POSTs using query string parameters.  It can run in connected or standalone access point modes.
 
-Infrared Remote Control
------------------------
-
-Control via infrared remote control is also supported, via the [ESP8266 port of the IRremote library](https://github.com/sebastienwarin/IRremoteESP8266).
 
 [Adafruit NeoPixel Ring]:https://www.adafruit.com/product/1586
 [Adafruit HUZZAH ESP8266 Breakout]:https://www.adafruit.com/products/2471
